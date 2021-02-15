@@ -1,24 +1,21 @@
 FROM node:14.7.0-alpine AS development
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
+WORKDIR /app
 
 COPY . .
 
 RUN npm install
+RUN npm run clean
 RUN npm run build
 
 FROM node:14.7.0-alpine AS production
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+ENV NODE_ENV=production
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY --from=development ./app/dist ./dist
 
-COPY . .
-COPY --from=development /usr/src/app/dist ./dist
+COPY package* ./
 
-CMD ["node", "dist/app"]
+RUN npm install --production
+CMD npm start
