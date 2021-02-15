@@ -4,11 +4,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm i -g rimraf
-
 COPY . .
 
-RUN npm install --only=development
+RUN npm install
 RUN npm run build
 
 FROM node:14.7.0-alpine AS production
