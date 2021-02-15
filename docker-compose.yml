@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    container_name: viewer-api-app
+    container_name: app
     build:
       context: .
       target: development
@@ -10,11 +10,13 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - ${PORT}:${PORT}
+      - 8080:3000
       - 9229:9229
     command: npm run start:debug
-    env_file:
-      - .env
+    environment:
+      HOST: app
+      DB_URL: mongodb://app-mongo/app
+
     networks:
       - appnetwork
     depends_on:
@@ -22,8 +24,8 @@ services:
       - mongo
 
   redis:
-    container_name: app-redis
     image: redis
+    container_name: app-redis
     networks:
       - appnetwork
 
@@ -37,15 +39,6 @@ services:
     restart: always
     volumes:
       - appdata:/data/db
-
-  mongo-express:
-    container_name: app-mongo-express
-    networks:
-      - appnetwork
-    image: mongo-express
-    restart: unless-stopped
-    ports:
-      - 443:8081
 
 networks:
   appnetwork:
