@@ -5,9 +5,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install --only=development
-RUN npm run build
 
 COPY . .
+
+RUN npm run build
 
 FROM node:14.7.0-alpine AS production
 
