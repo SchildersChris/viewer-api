@@ -18,4 +18,4 @@ COPY --from=development ./app/dist ./dist
 COPY package* ./
 
 RUN npm install --production
-RUN npm run start:prod
+CMD npm run start:prod
