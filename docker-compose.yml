@@ -16,7 +16,6 @@ services:
     environment:
       HOST: app
       DB_URL: mongodb://app-mongo/app
-
     networks:
       - appnetwork
     depends_on:
@@ -42,5 +41,6 @@ services:
 
 networks:
   appnetwork:
+
 volumes:
   appdata:

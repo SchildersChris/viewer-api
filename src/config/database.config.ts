@@ -5,7 +5,7 @@ export default registerAs(
   'database',
   (): MongooseModuleOptions =>
     ({
-      uri: process.env.DB_URL,
+      uri: process.env.DB_URL || 'mongodb://app-mongo/app',
       useNewUrlParser: true
     } as MongooseModuleOptions)
 );
