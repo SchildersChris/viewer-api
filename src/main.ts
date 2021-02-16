@@ -19,8 +19,8 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Example API')
-    .setDescription('Example API description')
+    .setTitle('Viewer API')
+    .setDescription('Viewer API description')
     .setVersion('1.0')
     .build();
 

@@ -10,12 +10,14 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 8080:3000
+      - 3000:3000
       - 9229:9229
     command: npm run start:debug
     environment:
       HOST: app
+      PORT: 3000
       DB_URL: mongodb://app-mongo/app
+
     networks:
       - appnetwork
     depends_on:
@@ -39,8 +41,16 @@ services:
     volumes:
       - appdata:/data/db
 
+  mongo-express:
+    image: mongo-express
+    container_name: app-mongo-express
+    networks:
+      - appnetwork
+    restart: unless-stopped
+    ports:
+      - 443:8081
+
 networks:
   appnetwork:
-
 volumes:
   appdata:
