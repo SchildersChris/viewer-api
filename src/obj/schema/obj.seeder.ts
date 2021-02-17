@@ -12,7 +12,6 @@ export class ObjSeeder {
     const readFile = util.promisify(fs.readFile);
     const objFile1 = new OBJFile(await readFile('./assets/polar.obj', 'utf8'));
     const file1 = objFile1.parse();
-    console.log(file1);
 
     await this.objService.create({
       name: 'Polar Bear',
@@ -25,7 +24,6 @@ export class ObjSeeder {
 
     const objFile2 = new OBJFile(await readFile('./assets/rabbit.obj', 'utf8'));
     const file2 = objFile2.parse();
-    console.log(file2);
 
     await this.objService.create({
       name: 'Rabbit',

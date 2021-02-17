@@ -12,7 +12,6 @@ export class ObjService {
   ) {}
 
   async create(objDto: CreateObjDto): Promise<Obj> {
-    console.dir(objDto);
     const obj = new this.objModel(objDto);
     return obj.save();
   }
