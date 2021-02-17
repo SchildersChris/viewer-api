@@ -6,8 +6,7 @@ import { ObjModule } from '../../obj/obj.module';
 
 @Module({
   imports: [CommandModule, ObjModule],
-  providers: [ObjSeeder],
-  exports: [ObjSeeder]
+  providers: [ObjSeeder]
 })
 export class SeedModule {
   constructor(private readonly objSeeder: ObjSeeder) {}
