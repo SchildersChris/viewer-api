@@ -14,6 +14,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=development ./app/dist ./dist
+COPY --from=development ./app/assets ./assets
 
 COPY package* ./
 
