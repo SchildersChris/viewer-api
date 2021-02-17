@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { User } from './schema/user.schema';
-import { UserModule } from './user.module';
+import { ObjModule } from './obj.module';
+import { ObjService } from './obj.service';
+import { Obj } from './schema/obj.schema';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('ObjService', () => {
+  let service: ObjService;
 
   const mockRepository = {
     find() {
@@ -15,13 +15,13 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [UserModule]
+      imports: [ObjModule]
     })
-      .overrideProvider(getModelToken(User.name))
+      .overrideProvider(getModelToken(Obj.name))
       .useValue(mockRepository)
       .compile();
 
-    service = module.get<UserService>(UserService);
+    service = module.get<ObjService>(ObjService);
   });
 
   it('should be defined', () => {

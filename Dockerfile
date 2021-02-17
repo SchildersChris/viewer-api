@@ -4,7 +4,6 @@ WORKDIR /app
 COPY . .
 
 RUN npm install
-RUN npm run clean
 RUN npm run build
 
 FROM node:14.7.0-alpine AS production

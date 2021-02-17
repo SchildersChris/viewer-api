@@ -5,7 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CONFIG_SERVER_CONST } from './common/constants/config.constants';
+import { CONFIG_SERVER_CONST } from './common/constant/config.constant';
 
 async function bootstrap() {
   const logger = new Logger(bootstrap.name);
