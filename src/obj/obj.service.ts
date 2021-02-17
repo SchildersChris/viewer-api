@@ -21,6 +21,6 @@ export class ObjService {
   }
 
   async findAll(): Promise<Obj[]> {
-    return this.objModel.find().exec();
+    return this.objModel.find({}, { name: 1 }).exec();
   }
 }
