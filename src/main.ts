@@ -33,4 +33,6 @@ async function bootstrap() {
     `Application running on ${serverConfig.host}:${serverConfig.port}`
   );
 }
-bootstrap();
+bootstrap().catch((e) => {
+  console.log(`An error has occured! ${e}`);
+});
