@@ -24,10 +24,10 @@ export class ObjController {
     return this.service.findAll();
   }
 
-  @Get(':name')
-  @ApiParam({ name: 'name', type: String })
-  get(@Param('name') name): Promise<Obj> {
-    return this.service.findById(name);
+  @Get(':id')
+  @ApiParam({ name: 'id', type: String })
+  get(@Param('id') id): Promise<Obj> {
+    return this.service.findById(id);
   }
 
   @Post('create')

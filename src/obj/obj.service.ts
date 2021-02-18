@@ -16,11 +16,11 @@ export class ObjService {
     return obj.save();
   }
 
-  async findById(name: string): Promise<Obj> {
-    return this.objModel.findOne({ name: name }).exec();
+  async findById(id: string): Promise<Obj> {
+    return this.objModel.findById(id).exec();
   }
 
   async findAll(): Promise<Obj[]> {
-    return this.objModel.find({}, { name: 1 }).exec();
+    return this.objModel.find().exec();
   }
 }
