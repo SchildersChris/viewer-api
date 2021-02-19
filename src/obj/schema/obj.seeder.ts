@@ -9,26 +9,20 @@ export class ObjSeeder {
   constructor(private readonly objService: ObjService) {}
 
   async seed() {
+    await this.createObj('Polar Bear', './assets/polar.obj');
+    await this.createObj('Rabbit', './assets/rabbit.obj');
+    await this.createObj('Vector', './assets/vector.obj');
+  }
+
+  private async createObj(name: string, path: string) {
     const readFile = util.promisify(fs.readFile);
-    const objFile1 = new OBJFile(await readFile('./assets/polar.obj', 'utf8'));
-    const file1 = objFile1.parse();
+    const objFile = new OBJFile(await readFile(path, 'utf8'));
+    const file = objFile.parse();
 
     await this.objService.create({
-      name: 'Polar Bear',
-      vertices: file1.models[0].vertices,
-      indices: file1.models[0].faces.reduce((indices, f) => {
-        indices.push(...(f.vertices?.map((v) => v.vertexIndex) ?? []));
-        return indices;
-      }, [])
-    });
-
-    const objFile2 = new OBJFile(await readFile('./assets/rabbit.obj', 'utf8'));
-    const file2 = objFile2.parse();
-
-    await this.objService.create({
-      name: 'Rabbit',
-      vertices: file2.models[0].vertices,
-      indices: file2.models[0].faces.reduce((indices, f) => {
+      name: name,
+      vertices: file.models[0].vertices,
+      indices: file.models[0].faces.reduce((indices, f) => {
         indices.push(...(f.vertices?.map((v) => v.vertexIndex) ?? []));
         return indices;
       }, [])
