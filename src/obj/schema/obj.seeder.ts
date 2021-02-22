@@ -12,6 +12,7 @@ export class ObjSeeder {
     await this.createObj('Polar Bear', './assets/polar.obj');
     await this.createObj('Rabbit', './assets/rabbit.obj');
     await this.createObj('Vector', './assets/vector.obj');
+    await this.createObj('Deer', './assets/deer.obj');
   }
 
   private async createObj(name: string, path: string) {
