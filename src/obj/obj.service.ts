@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { Obj, ObjDocument } from './schema/obj.schema';
 import { CreateObjDto } from './dto/create-obj.dto';
 
@@ -17,6 +17,9 @@ export class ObjService {
   }
 
   async findById(id: string): Promise<Obj> {
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+      return Promise.resolve(null);
+    }
     return this.objModel.findById(id).exec();
   }
 
