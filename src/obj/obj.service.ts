@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
+import { Model } from 'mongoose';
 import { Obj, ObjDocument } from './schema/obj.schema';
 import { CreateObjDto } from './dto/create-obj.dto';
 
@@ -24,6 +24,6 @@ export class ObjService {
   }
 
   async findAll(): Promise<Obj[]> {
-    return this.objModel.find().exec();
+    return this.objModel.find({}, { name: 1 }).exec();
   }
 }
